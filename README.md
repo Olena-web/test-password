@@ -16,3 +16,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ###### If the password is medium - the first two sections are yellow the last one is gray;
 ###### If the password is strong, all sections are green;
 
+#### deploy: 
+https://test-password.netlify.app/
