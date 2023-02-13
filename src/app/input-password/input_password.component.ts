@@ -1,8 +1,5 @@
 import {Component} from '@angular/core';
-// import {MatInputModule} from '@angular/material/input';
-// import {FormsModule} from '@angular/forms';
-// import { FormControl } from '@angular/forms';
-// import { Validators } from '@angular/forms';
+import { LETTERS, NUMBERS, SYMBOLS, LETTERS_NUMBERS, LETTERS_SYMBOLS, NUMBERS_SYMBOLS, LETTERS_NUMBERS_SYMBOLS } from '../constants';
 
 
 @Component({
@@ -15,13 +12,6 @@ import {Component} from '@angular/core';
 
 export class InputPasswordComponent {
   value = '';
-  letters = /^[A-Za-z]+$/;
-  numbers = /^[0-9]+$/;
-  symbols = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/;
-  lettersAndNumbers = /^[a-zA-Z0-9]+$/;
-  lettersAndSymbols = /^[a-zA-Z!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/;
-  numbersAndSymbols = /^[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/;
-  lettersAndNumbersAndSymbols = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/;
 
   update(value: string) { this.value = value; console.log(this.value, value.length);
     const strong = document.querySelectorAll<HTMLElement>('.strong');
@@ -66,6 +56,7 @@ export class InputPasswordComponent {
       strong.forEach((el) => {
         el.classList.remove('red');
         el.classList.remove('yellow');
+        el.classList.remove('green');
         el.classList.add('none');
       }
       );
@@ -74,24 +65,25 @@ export class InputPasswordComponent {
     strong.forEach((el) => {
       el.classList.remove('none');
       el.classList.remove('yellow');
+      el.classList.remove('green');
       el.classList.add('red');
   });
 
 }
  if (value.length > 8){
-    if ( value.match(this.letters) ) {
+    if ( value.match(LETTERS) ) {
   easy();
 }
-else if (value.match(this.numbers)) {
+else if (value.match(NUMBERS)) {
   easy();
 }
-else if (value.match(this.symbols)) {
+else if (value.match(SYMBOLS)) {
   easy();
 }
-  else  if (value.match(this.lettersAndNumbers) || value.match(this.lettersAndSymbols) || value.match(this.numbersAndSymbols)) {
+  else  if (value.match(LETTERS_NUMBERS) || value.match(LETTERS_SYMBOLS) || value.match(NUMBERS_SYMBOLS)) {
   medium();
   }
-    else if (value.match(this.lettersAndNumbersAndSymbols)) {
+    else if (value.match(LETTERS_NUMBERS_SYMBOLS)) {
   hard();
   }
 }
