@@ -1,95 +1,59 @@
-import {Component} from '@angular/core';
-import { LETTERS, NUMBERS, SYMBOLS, LETTERS_NUMBERS, LETTERS_SYMBOLS, NUMBERS_SYMBOLS, LETTERS_NUMBERS_SYMBOLS } from '../constants';
+import { Component, forwardRef} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-
+import update from '../complexity-area';
 @Component({
   selector: 'app-input_password',
   templateUrl: './input_password.component.html',
   styleUrls: ['./input_password.component.sass'],
-
-
+  providers: [
+    {       provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputPasswordComponent),
+            multi: true
+    }
+    ]
 })
 
-export class InputPasswordComponent {
-  value = '';
+export class InputPasswordComponent implements ControlValueAccessor {
+  hide: true | false = true;
+  val= ""
 
-  update(value: string) { this.value = value; console.log(this.value, value.length);
-    const strong = document.querySelectorAll<HTMLElement>('.strong');
-    const first = document.getElementById('1');
-    const second = document.getElementById('2');
-    const third = document.getElementById('3');
-
-    const easy = ()=> {
-      strong.forEach((el) => {
-        el.classList.remove('none');
-        el.classList.remove('red');
-        el.classList.remove('yellow');
-        el.classList.remove('green');
-      })
-      first?.classList.add('red');
-      second?.classList.add('none');
-      third?.classList.add('none');
-    }
-
-    const medium = ()=> {
-      strong.forEach((el) => {
-        el.classList.remove('none');
-        el.classList.remove('red');
-        el.classList.remove('green');
-      })
-      first?.classList.add('yellow');
-      second?.classList.add('yellow');
-      third?.classList.add('none');
-    }
-
-    const hard = ()=> {
-      strong.forEach((el) => {
-        el.classList.remove('none');
-        el.classList.remove('red');
-        el.classList.remove('yellow');
-        el.classList.add('green');
-      })
-    }
-
-
-    if (value === '') {
-      strong.forEach((el) => {
-        el.classList.remove('red');
-        el.classList.remove('yellow');
-        el.classList.remove('green');
-        el.classList.add('none');
-      }
-      );
-    }
-  else if (value.length <= 8) {
-    strong.forEach((el) => {
-      el.classList.remove('none');
-      el.classList.remove('yellow');
-      el.classList.remove('green');
-      el.classList.add('red');
-  });
-
-}
- if (value.length > 8){
-    if ( value.match(LETTERS) ) {
-  easy();
-}
-else if (value.match(NUMBERS)) {
-  easy();
-}
-else if (value.match(SYMBOLS)) {
-  easy();
-}
-  else  if (value.match(LETTERS_NUMBERS) || value.match(LETTERS_SYMBOLS) || value.match(NUMBERS_SYMBOLS)) {
-  medium();
+  constructor() { }
+  keyupHandler(event: any) {
+    this.val = event.target.value;
+    update(this.val);
   }
-    else if (value.match(LETTERS_NUMBERS_SYMBOLS)) {
-  hard();
+  blurHandler(event: any) {
+    this.val = event.target.value;
+    update(this.val);
+  }
+  onChange: any = () => {}
+  onTouch: any = () => {}
+
+  set value(val: string){
+    if( val !== undefined && this.val !== val){
+    this.val = val
+    this.onChange(val)
+    this.onTouch(val)
+    this.keyupHandler(val)
+    this.blurHandler(val)
+    }
+  }
+
+  writeValue(value: string){
+    this.value = value
+  }
+
+  registerOnChange(fn: any){
+    this.onChange = fn
+  }
+  registerOnTouched(fn: any){
+    this.onTouch = fn
+  }
+  registerkeyUp(fn: any){
+    this.keyupHandler = fn
+  }
+  registerBlur(fn: any){
+    this.blurHandler = fn
   }
 }
-}
-  hide = true;
-  password: any;
-
-}
-
