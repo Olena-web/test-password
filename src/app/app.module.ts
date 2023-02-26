@@ -7,13 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { FormControl } from '@angular/forms';
-//import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
-    InputPasswordComponent
+    InputPasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -23,7 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

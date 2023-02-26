@@ -19,41 +19,39 @@ export class InputPasswordComponent implements ControlValueAccessor {
   val= ""
 
   constructor() { }
-  keyupHandler(event: any) {
-    this.val = event.target.value;
-    update(this.val);
-  }
-  blurHandler(event: any) {
-    this.val = event.target.value;
-    update(this.val);
-  }
-  onChange: any = () => {}
-  onTouch: any = () => {}
-
-  set value(val: string){
-    if( val !== undefined && this.val !== val){
-    this.val = val
-    this.onChange(val)
-    this.onTouch(val)
-    this.keyupHandler(val)
-    this.blurHandler(val)
+    keyupHandler(event: any) {
+      this.val = event.target.value;
+      update(this.val);
     }
-  }
+    blurHandler(event: any) {
+      this.val = event.target.value;
+      update(this.val);
+    }
+    onChange: any = () => {}
+    onTouch: any = () => {}
 
-  writeValue(value: string){
-    this.value = value
-  }
-
-  registerOnChange(fn: any){
-    this.onChange = fn
-  }
-  registerOnTouched(fn: any){
-    this.onTouch = fn
-  }
-  registerkeyUp(fn: any){
-    this.keyupHandler = fn
-  }
-  registerBlur(fn: any){
-    this.blurHandler = fn
-  }
+    set value(val: string){
+      if( val !== undefined && this.val !== val){
+      this.val = val
+      this.onChange(val)
+      this.onTouch(val)
+      this.keyupHandler(val)
+      this.blurHandler(val)
+      }
+    }
+    writeValue(value: string){
+      this.value = value
+    }
+    registerOnChange(fn: any){
+      this.onChange = fn
+    }
+    registerOnTouched(fn: any){
+      this.onTouch = fn
+    }
+    registerkeyUp(fn: any){
+      this.keyupHandler = fn
+    }
+    registerBlur(fn: any){
+      this.blurHandler = fn
+    }
 }
