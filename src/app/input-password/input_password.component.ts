@@ -1,7 +1,7 @@
 import { Component, forwardRef} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import update from '../complexity-area';
+import update from '../utility/complexity-area';
 @Component({
   selector: 'app-input_password',
   templateUrl: './input_password.component.html',
