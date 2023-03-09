@@ -6,7 +6,5 @@ import { InputPasswordComponent} from './input-password/input_password.component
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-[x: string]: any;
   title = 'test-password';
-input_password: any;
 }
