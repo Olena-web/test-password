@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InputPasswordComponent} from './input-password/input_password.component';
+import { InputPasswordComponent } from './input-password/input_password.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,5 @@ import { InputPasswordComponent} from './input-password/input_password.component
 })
 export class AppComponent {
   title = 'test-password';
+  input_password: InputPasswordComponent | undefined;
 }
