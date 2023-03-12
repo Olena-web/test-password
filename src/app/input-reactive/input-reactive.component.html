@@ -1,0 +1,11 @@
+<h3>reactive form with ControlValueAccessor</h3>
+<label for="password">Enter your password: </label>
+<input id="password2" type="password" [formControl]="password2" (touch)="onTouch($event)" (change)="onChange($event)">
+<input type="checkbox" id="checkbox" (click)="onClick()">
+Show Password
+
+<div class="password-content">
+  <div class="complexity" id="4"></div>
+  <div class="complexity" id="5"></div>
+  <div class="complexity" id="6"></div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import update from '../utility/complexity-area';
+import { changeValue } from '../utility/helpers';
 @Component({
   selector: 'app-input-password',
   templateUrl: './input_password.component.html',
@@ -17,37 +17,34 @@ import update from '../utility/complexity-area';
 
 export class InputPasswordComponent implements ControlValueAccessor {
   hide: true | false = true;
-  val = ""
+  val = "";
+
   keyupHandler(event: KeyboardEvent) {
-    this.val = (event.target as HTMLInputElement).value;
-    update(this.val);
+    changeValue(event);
   }
   blurHandler(event: Event) {
-    this.val = (event.target as HTMLInputElement).value;
-    update(this.val);
+    changeValue(event);
   }
   onChange(event: Event) {
-    this.val = (event.target as HTMLInputElement).value;
-    update(this.val);
+    changeValue(event);
   }
   onTouch(event: Event) {
-    this.val = (event.target as HTMLInputElement).value;
-    update(this.val);
+    changeValue(event);
   }
-
   writeValue(value: string) {
     this.val = value
   }
-  registerOnChange(fn: never) {
+  registerOnChange(fn: (event: Event) => string) {
     this.onChange = fn
   }
-  registerOnTouched(fn: never) {
+  registerOnTouched(fn: (event: Event) => string) {
     this.onTouch = fn
   }
-  registerkeyUp(fn: never) {
+  registerkeyUp(fn: (event: Event) => string) {
     this.keyupHandler = fn
   }
-  registerBlur(fn: never) {
+  registerBlur(fn: (event: Event) => string) {
     this.blurHandler = fn
   }
 }
+

@@ -1,12 +1,7 @@
 import { LETTERS, NUMBERS, SYMBOLS, LETTERS_NUMBERS, LETTERS_SYMBOLS, NUMBERS_SYMBOLS, LETTERS_NUMBERS_SYMBOLS } from './constants';
 import { removeColor } from './helpers';
 
-export const update = function (value: string) {
-
-  const strong = document.querySelectorAll<HTMLElement>('.strong');
-  const first = document.getElementById('1');
-  const second = document.getElementById('2');
-  const third = document.getElementById('3');
+export const update = function (value: string, complexity: NodeListOf<HTMLElement>, first: HTMLElement, second: HTMLElement, third: HTMLElement) {
 
   const easy = () => {
     first?.classList.add('red');
@@ -21,13 +16,13 @@ export const update = function (value: string) {
   }
 
   const hard = () => {
-    strong.forEach((el) => {
+    complexity.forEach((el) => {
       el.classList.add('green');
     })
   }
 
   if (value === '') {
-    strong.forEach((el) => {
+    complexity.forEach((el) => {
       removeColor(el);
       el.classList.add('none');
     }
@@ -35,12 +30,12 @@ export const update = function (value: string) {
   }
 
   if (value) {
-    strong.forEach((el) => {
+    complexity.forEach((el) => {
       removeColor(el);
     });
 
     if (value.length <= 8) {
-      strong.forEach((el) => {
+      complexity.forEach((el) => {
         el.classList.add('red')
       }
       )
